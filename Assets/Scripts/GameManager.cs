@@ -25,10 +25,9 @@ public class GameManager : MonoBehaviour
     private int totalMatches;
 
     public AudioSource mainAudioSource;
-    public AudioSource audioSourceone;
-    public AudioSource audioSourcetwo;
     public AudioClip goodAudio;
     public AudioClip wrongAudio;
+    public AudioClip chooseAudio;
 
     void Awake()
     {
@@ -95,13 +94,13 @@ public class GameManager : MonoBehaviour
             {
                 firstGuess = true;
                 firstchoise = UnityEngine.EventSystems.EventSystem.current.currentSelectedGameObject.GetComponent<Card>();
-                audioSourceone.Play();
+                mainAudioSource.PlayOneShot(chooseAudio);   
             }
             else if (!secondGuess)
             {
                 secondGuess = true;
                 secondchoise = UnityEngine.EventSystems.EventSystem.current.currentSelectedGameObject.GetComponent<Card>();
-                audioSourcetwo.Play();
+                mainAudioSource.PlayOneShot(chooseAudio);
             }
         }
         if (index == 2)
