@@ -134,7 +134,8 @@ TextureImporter:
     secondaryTextures: []
     spriteCustomMetadata:
       entries: []
-    nameFileIdTable: {}
+    nameFileIdTable:
+      dota 2_0: -8581663781037281579
   mipmapLimitGroupName: 
   pSDRemoveMatte: 0
   userData: 

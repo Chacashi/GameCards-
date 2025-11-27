@@ -2,6 +2,7 @@ using System;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.SceneManagement;
 using UnityEngine.UI;
 
 public class GameManager : MonoBehaviour
@@ -29,6 +30,8 @@ public class GameManager : MonoBehaviour
     public AudioClip wrongAudio;
     public AudioClip chooseAudio;
 
+
+    public static event Action OnGameWin;
     void Awake()
     {
 
@@ -137,8 +140,15 @@ public class GameManager : MonoBehaviour
 
         if (matches == totalMatches)
         {
+            OnGameWin?.Invoke();
             print("Win");
             winPanel.gameObject.SetActive(true);
         }
+    }
+
+
+    public void Reset()
+    {
+        SceneManager.LoadScene(1);
     }
 }
