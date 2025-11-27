@@ -50,25 +50,19 @@ public class Timer : MonoBehaviour
         
         float seconds = Mathf.FloorToInt(timeToDisplay % 60);
 
-        
-        timerText.text = string.Format("{0:00}:{1:00}", minutes, seconds);
+
+        string finalTime = string.Format("{0:00}:{1:00}", minutes, seconds);
+        #if UNITY_WEBGL && !UNITY_EDITOR
+                        SetTime(finalTime);
+        #endif
+
     }
 
 
     public void StopTimer()
     {
         isRunning = false;
-
-
-        float minutes = Mathf.FloorToInt(elapsedTime / 60);
-        float seconds = Mathf.FloorToInt(elapsedTime % 60);
-
-   
-        string finalTime = string.Format("{0:00}:{1:00}", minutes, seconds);
-
-        #if UNITY_WEBGL && !UNITY_EDITOR
-                SetTime(finalTime);
-        #endif
+        
     }
 
     public void ResumeTimer()
@@ -80,5 +74,7 @@ public class Timer : MonoBehaviour
     {
         elapsedTime = 0f;
         UpdateTimerDisplay(elapsedTime);
+ 
+    
     }
 }

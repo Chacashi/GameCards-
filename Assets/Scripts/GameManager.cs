@@ -1,6 +1,7 @@
 using System;
 using System.Collections;
 using System.Collections.Generic;
+using System.Runtime.InteropServices;
 using UnityEngine;
 using UnityEngine.SceneManagement;
 using UnityEngine.UI;
@@ -32,6 +33,8 @@ public class GameManager : MonoBehaviour
 
 
     public static event Action OnGameWin;
+    [DllImport("__Internal")]
+    private static extern void SetTime(string time);
     void Awake()
     {
 
@@ -150,5 +153,11 @@ public class GameManager : MonoBehaviour
     public void Reset()
     {
         SceneManager.LoadScene(1);
+
+        string finalTime = string.Format("{0:00}:{1:00}", 0f, 0f);
+
+        #if UNITY_WEBGL && !UNITY_EDITOR
+                        SetTime(finalTime);
+        #endif
     }
 }
